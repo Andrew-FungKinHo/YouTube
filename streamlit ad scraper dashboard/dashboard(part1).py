@@ -5,7 +5,6 @@ import plotly.express as px
 import requests, lxml, time,json, tldextract
 from bs4 import BeautifulSoup
 from streamlit_tags import st_tags
-import numpy as np
 
 # Specify User Agent 
 headers = {
@@ -13,8 +12,6 @@ headers = {
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3538.102 Safari/537.36 Edge/18.19582"
 }
 
-
-# @st.cache(allow_output_mutation=True)
 def adScraper(numberOfTimes,listOfKeywords):
     st.subheader('Progress:')
     my_bar = st.progress(0)
@@ -153,73 +150,7 @@ def jsonToDataFrame(resultDict,listOfKeywords):
 
 def displayScraperResult():
     st.title(':bar_chart: Analysis Visualizer')
-    df = pd.read_csv('AdScrapeResult.csv')
 
-    keywords = df['Keyword'].unique().tolist()
-    keyword_selection = st.multiselect('Keyword:',keywords,default=keywords)
-    if not keyword_selection:
-        st.error("Please select at least one keyword to display the dataframe.")
-    mask = df['Keyword'].isin(keyword_selection)
-    number_of_result = df[mask].shape[0]
-    st.markdown(f'*Available rows: {number_of_result}*')
-    st.dataframe(df[mask])
-
-    # st.dataframe(groupedKeywordPercentage_df)
-    groupedKeywordPercentage_df = generateKeywordAdPercentage(df)
-    # remove rows with zero percentage
-    groupedKeywordPercentage_df = groupedKeywordPercentage_df[groupedKeywordPercentage_df.Percentage != 0]
-
-
-    # plot bar chart
-    bar_chart = px.bar(
-        groupedKeywordPercentage_df,
-        x="Keyword",
-        y="Percentage",
-        text="Percentage",
-        template="plotly_white",
-        title="Keyword Ads Percentage(%)"
-    )
-    st.plotly_chart(bar_chart)
-
-
-    test_df = df.groupby(by="Company", dropna=True)
-
-    companyList = []
-    companyCount = []
-    for key, item in test_df:
-        companyList.append(key)
-        companyCount.append(len(test_df.get_group(key)))
-
-    companyAppearance_df = pd.DataFrame({'Company': companyList, 'Appearance': companyCount},columns =['Appearance'],index=companyList)
-    st.bar_chart(companyAppearance_df)
-
-    for keyword in keywords:
-        keyword_df = df[df['Keyword'] == keyword]
-        if len(keyword_df) != 1 and keyword_df['Company'] is not None:
-            st.write(keyword)
-            new_df = pd.DataFrame({'Company': keyword_df['Company'].tolist(), 
-                                    'absolute-top': keyword_df['absolute-top'].tolist(),
-                                    'top': keyword_df['top'].tolist(),
-                                    'bottom': keyword_df['bottom'].tolist()},
-                                columns=["absolute-top", "top", "bottom"],
-                                index=keyword_df['Company'].tolist())
-            st.bar_chart(new_df)
-
-    # # display result Dict
-    # resultantJson = st.json(resultDict)
-
-# Generate Keyword Ads Appearance Percentage
-def generateKeywordAdPercentage(df):
-    keywordAdPercentage = []
-    for keyword in df['Keyword'].unique().tolist():
-        if df[df['Keyword'] == keyword]['Keyword Ads Percentage(%)'].max() is None:
-            keywordAdPercentage.append(0)
-        else:
-            keywordAdPercentage.append(df[df['Keyword'] == keyword]['Keyword Ads Percentage(%)'].max())
-
-    groupedKeywordPercentage_df = pd.DataFrame(list(zip(df['Keyword'].unique().tolist(), keywordAdPercentage)),columns =['Keyword', 'Percentage'])
-    groupedKeywordPercentage_df = groupedKeywordPercentage_df.sort_values(by=['Percentage'],ascending=False)
-    return groupedKeywordPercentage_df
 
 # title
 st.title(":male-detective: Google Ads Keyword Dashboard")
