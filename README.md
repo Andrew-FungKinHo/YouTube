@@ -9,11 +9,11 @@ Python Playlist
 <br>
 
 React Playlist
-<img align="left" alt="React" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" />: https://youtube.com/playlist?list=PLR8GQrwPTwEp1JqCcvTFffGMhc6A3g8kw
+<img align="left" alt="React" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" />: https://youtube.com/playlist?list=PLR8GQrwPTwEqnjD4m7iCDu2bC2loUE8Qk
 <br>
 
 Flutter Playlist
-<img align="left" alt="Flutter" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/flutter/flutter.png"/> : https://youtube.com/playlist?list=PLR8GQrwPTwEp1JqCcvTFffGMhc6A3g8kw
+<img align="left" alt="Flutter" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/flutter/flutter.png"/> : https://youtube.com/playlist?list=PLR8GQrwPTwEql606m1rYL9EutyN4ty42J
 <br>
 
 GitHub -> https://github.com/Andrew-FungKinHo/ <br>
