@@ -62,14 +62,9 @@ function bot(){
     let array = [];
     if(runBot){
         playerSign = "O";
-        // find the remaining boxes that has not been marked
-        for (let i = 0; i < allBox.length; i++) {
-            if(allBox[i].childElementCount == 0){
-                array.push(i);
-            }
-        }
-        // get random box from remaining tiles
-        let randomBox = array[Math.floor(Math.random() * array.length)];
+
+
+
         if(array.length > 0){
             if(players.classList.contains("player")){ 
                 playerSign = "X";
