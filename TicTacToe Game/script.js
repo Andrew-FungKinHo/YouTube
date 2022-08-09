@@ -56,7 +56,7 @@ function clickedBox(element){
     console.log(playBoard);
 
 }
-
+  
 // computer interaction with the board
 function bot(){
     let array = [];
